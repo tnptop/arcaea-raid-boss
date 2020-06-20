@@ -9,6 +9,7 @@ const helmet = require('helmet')
 const morgan = require('morgan')
 
 const routes = require('./src/routes')
+const { errorHandler } = require('./src/utils/errorHandler')
 
 const app = express()
 app.use(cors())
@@ -20,5 +21,6 @@ app.use(helmet())
 app.use(morgan('dev'))
 
 app.use(routes)
+app.use(errorHandler)
 
 app.listen(54321, () => console.log('RAID BOSS UP @ 54321'))

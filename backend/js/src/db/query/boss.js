@@ -39,24 +39,24 @@ exports.list = async (requireDetail) => {
 */
 
 exports.get = async (bossId) => {
+  const { session, schema } = await db.getDefaults()
   try {
-    const { session, schema } = await db.getDefaults()
     const table = schema.getTable('bosses')
 
     const getQuery = await table.select(['is_active']).where(`_id = '${bossId}'`).execute()
     const isActive = getQuery.fetchOne()[0]
     const collection = schema.getCollection(`${isActive ? 'active_' : ''}boss_parameters`)
-    const boss = await collection.getOne(bossId)
-    await session.close()
-    return boss
+    return await collection.getOne(bossId)
   } catch (e) {
     throw e
+  } finally {
+    await session.close()
   }
 }
 
 exports.create = async (bossParams) => {
+  const { session, schema } = await db.getDefaults()
   try {
-    const { session, schema } = await db.getDefaults()
     const table = schema.getTable('bosses')
     const collection = schema.getCollection('boss_parameters')
 
@@ -68,32 +68,33 @@ exports.create = async (bossParams) => {
       .insert(['_id', 'name', 'is_active'])
       .values([newBossParamsId, bossParams.name, false])
       .execute()
-    await session.close()
     return newBossParamsId
   } catch (e) {
     throw e
+  } finally {
+    await session.close()
   }
 }
 
 exports.getActive = async () => {
+  const { session, schema } = await db.getDefaults()
   try {
-    const { session, schema } = await db.getDefaults()
     const table = schema.getTable('bosses')
     const collection = schema.getCollection('active_boss_parameters')
 
     const query = await table.select(['_id']).where('is_active = 1').execute()
     const activeBossId = query.fetchOne()[0]
-    const currBossParams = await collection.getOne(activeBossId)
-    await session.close()
-    return currBossParams
+    return await collection.getOne(activeBossId)
   } catch (e) {
     throw e
+  } finally {
+    await session.close()
   }
 }
 
 exports.setActive = async (bossId) => {
+  const { session, schema } = await db.getDefaults()
   try {
-    const { session, schema } = await db.getDefaults()
     const table = schema.getTable('bosses')
     const collection = schema.getCollection('boss_parameters')
     const activeCollection = schema.getCollection('active_boss_parameters')
@@ -101,21 +102,23 @@ exports.setActive = async (bossId) => {
     const boss_params = await collection.getOne(bossId)
     await activeCollection.add(boss_params).execute()
     await table.update().where(`_id = '${bossId}'`).set('is_active', 1).execute()
-    await session.close()
   } catch (e) {
     throw e
+  } finally {
+    await session.close()
   }
 }
 
 exports.updateActive = async (bossId, updateBossParams) => {
+  const { session, schema } = await db.getDefaults()
   try {
-    const { session, schema } = await db.getDefaults()
     const collection = schema.getCollection('active_boss_parameters')
 
     await collection.replaceOne(bossId, updateBossParams)
-    await session.close()
   } catch (e) {
     throw e
+  } finally {
+    await session.close()
   }
 }
 

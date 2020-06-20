@@ -82,7 +82,7 @@ exports.getActive = async () => {
     const table = schema.getTable('bosses')
     const collection = schema.getCollection('active_boss_parameters')
 
-    const query = await table.select(['_id']).where('is_active = 1').execute()
+    const query = await table.select(['_id']).where('is_active = true').execute()
     const activeBossId = query.fetchOne()[0]
     return await collection.getOne(activeBossId)
   } catch (e) {

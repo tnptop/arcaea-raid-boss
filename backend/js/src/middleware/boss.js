@@ -7,7 +7,17 @@ exports.getBoss = async (req, res, next) => {
     const { _id } = req.params
     const boss = await bossDb.get(_id)
 
-    res.status(200).json({boss})
+    res.status(200).json({ boss })
+  } catch (e) {
+    next(e)
+  }
+}
+
+exports.getActiveBoss = async (req, res, next) => {
+  try {
+    const activeBoss = await bossDb.getActive()
+
+    res.status(200).json({ boss: activeBoss })
   } catch (e) {
     next(e)
   }
@@ -15,7 +25,7 @@ exports.getBoss = async (req, res, next) => {
 
 exports.createBoss = async (req, res, next) => {
   try {
-    const {boss_params} = req.body
+    const { boss_params } = req.body
     const id = await bossDb.create(boss_params)
 
     res.status(201).json({ id })

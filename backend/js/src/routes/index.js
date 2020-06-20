@@ -7,6 +7,7 @@ const boss = require('../middleware/boss')
 const partner = require('../middleware/partner')
 const song = require('../middleware/song')
 
+router.get('/bosses/active', boss.getActiveBoss)
 router.get('/bosses/:_id', boss.getBoss)
 router.post('/bosses', boss.createBoss)
 

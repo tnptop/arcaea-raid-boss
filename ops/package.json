@@ -1,0 +1,14 @@
+{
+  "name": "ops",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@google-cloud/firestore": "^3.7.3",
+    "aws-sdk": "^2.614.0"
+  }
+}

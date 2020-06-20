@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width,user-scalable=0">
+  <title>DAMAGE CALCULATOR</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css" type="text/css">
+  <link rel="stylesheet" href="css/main.css" type="text/css">
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" type="text/css">
+  <link rel="icon" href="./img/favicon-96x96.png" type="image/png">
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <!-- Add your site or application content here -->
+  <div class="center vertical-center">
+    <div class="container">
+      <div class="row">
+        <form class="col-sm-6 jumbotron">
+          <h1 class="display-6">ARCAEA</h1>
+          <div class="form-group">
+            <div class="card border-dark mb-3">
+              <div class="card-header">Boss Parameters</div>
+              <div class="card-body">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Threshold</span>
+                  </div>
+                  <input type="text" class="form-control" id="arc-threshold" placeholder="98000000" dir="rtl" />
+                </div>
+                <div class="card border-dark mt-3 mb-1 mt-3">
+                  <div class="card-header">Weaknesses</div>
+                  <div class="card-body">
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input weakness light" type="checkbox" id="weakness-light" />
+                      <label class="form-check-label" for="weakness-light">Light</label>
+                    </div>
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input weakness conflict" type="checkbox" id="weakness-conflict" />
+                      <label class="form-check-label" for="weakness-conflict">Conflict</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="card border-dark mt-3 mb-1 mt-3">
+                  <div class="card-header">Resistances</div>
+                  <div class="card-body">
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input resist light" type="checkbox" id="resist-light" />
+                      <label class="form-check-label" for="resist-light">Light</label>
+                    </div>
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input resist conflict" type="checkbox" id="resist-conflict" />
+                      <label class="form-check-label" for="resist-conflict">Conflict</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card border-dark">
+              <div class="card-header">Player Stat</div>
+              <div class="card-body">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Score</span>
+                  </div>
+                  <input type="text" class="form-control" id="arc-score" placeholder="98000000" dir="rtl" />
+                </div>
+                <div class="input-group mt-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Side</span>
+                  </div>
+                  <select class="custom-select" id="arc-side">
+                    <option value="light">Light</option>
+                    <option value="conflict">Conflict</option>
+                  </select>
+                </div>
+                <div class="input-group mt-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Clear?</span>
+                  </div>
+                  <select class="custom-select" id="arc-clear">
+                    <option value="1">YES</option>
+                    <option value="0">NO</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <br/>
+            <button type="button" class="btn btn-block btn-primary" id="arc-calc-damage">Calculate Damage</button>
+            <div class="input-group mt-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Damage</span>
+              </div>
+              <input type="text" class="form-control" id="arc-damage" placeholder="0" dir="rtl" readonly />
+            </div>
+          </div>
+        </form>
+        <form class="col-sm-6 jumbotron">
+          <h1 class="display-6">HEXADIVER</h1>
+          <div class="form-group">
+            <div class="card border-dark mb-3">
+              <div class="card-header">Parameters</div>
+              <div class="card-body">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Difficulty</span>
+                  </div>
+                  <select class="custom-select" id="hexa-difficulty">
+                    <option value="0">NOV</option>
+                    <option value="1">ADV</option>
+                    <option value="2">EXH</option>
+                    <option value="3">MXM</option>
+                  </select>
+                </div>
+                <div class="input-group mt-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">HEXA RANK</span>
+                  </div>
+                  <select class="custom-select" id="hexa-rank">
+                    <option value="0">1</option>
+                    <option value="1">2</option>
+                    <option value="2">3</option>
+                    <option value="3">4</option>
+                    <option value="4">5</option>
+                  </select>
+                </div>
+                <div class="input-group mt-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Clear?</span>
+                  </div>
+                  <select class="custom-select" id="hexa-clear">
+                    <option value="1">YES</option>
+                    <option value="0">NO</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <br/>
+            <button type="button" class="btn btn-block btn-primary" id="hexa-calc-damage">Calculate Damage</button>
+            <div class="input-group mt-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Damage</span>
+              </div>
+              <input type="text" class="form-control" id="hexa-damage" placeholder="0" dir="rtl" readonly />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Scripts goes here -->
+  <!-- CDN -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.1.0/dist/latest/bootstrap-autocomplete.min.js"></script>
+  <!-- Logic -->
+  <script src="js/arcaea.js"></script>
+  <script src="js/hexa.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+1. Did they pass? What was their score?
+2. Did their score pass the Shield?
+3. Was their song a Weakness or a Resistance? (x0.7 for Res, 1.3x for Weakness)
+4. Check Boss Skill, what does it do? Does it decrease Recollection? If it pushes player into not clearing a song. STOP ALL CALCULATION. No damage.
+5. If you passed, check Partner Skill, does it add anything/do anything to the boss? Make changes according to that.
+6. Calculate total damage.
+
+
+
+0. Check whether the player gets TRACK LOST or not, if so then the damage is 0, else continue
+1. Apply partner's skill to get potential recollection gauge and score
+2. Apply boss' skill to get net recollection gauge and score
+3. If recollection gauge is pushed to TRACK LOST (70% easy/normal, 1% hard, partner specific e.g. A DORO*C) and/or the score does not exceed boss' shield, they deal 0 damage
+4. Calculate actual damage

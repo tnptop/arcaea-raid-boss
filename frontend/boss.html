@@ -22,23 +22,145 @@
 <body>
   <div class="center vertical-center">
     <div class="container">
-      <div class="row">
-        <div class="col-sm-6">
-          <h1 class="display-6">Boss</h1>
-          <div class="card border-dark mb-3">
-            <h3 class="card-header" id="boss-name"></h3>
+      <div class="row" style="margin-top: 1rem;">
+        <div class="col-md-6">
+          <div class="card border-dark mb-3" id="boss-info">
+            <h3 class="card-header">Boss Info.</h3>
             <div class="card-body">
-              <div class=""></div>
+              <div class="container-fluid">
+                <div class="row">
+                  <b class="col-6">Name</b>
+                  <div class="col-6 align-right">
+                    <span id="boss-name"></span>
+                  </div>
+                </div>
+                <div style="height: 0.75rem"></div>
+                <div class="row">
+                  <b class="col-6">Health</b>
+                  <div class="col-6 align-right">
+                    <span id="health"></span> / <span id="max-health"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" id="health-percentage"></div>
+                    </div>
+                  </div>
+                </div>
+                <div style="height: 0.75rem"></div>
+                <div class="row">
+                  <b class="col-6">Shield</b>
+                  <div class="col-6 align-right">
+                    <span id="shield"></span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-sm-6">
-          <h1 class="display-6">Player</h1>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="card border-dark mb-3" id="attack-info">
+              <h3 class="card-header">Attack Info.</h3>
+              <div class="card-body">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="user-code">User Code</label>
+                  </div>
+                  <input type="text" class="form-control" id="user-code" placeholder="000000001" dir="rtl" />
+                </div>
+                <div style="height: 0.75rem"></div>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="potential">Potential</label>
+                  </div>
+                  <input type="number" class="form-control" id="potential" step="0.01" min="0" max="12.70" value="11.00" dir="rtl" />
+                </div>
+                <div style="height: 0.75rem"></div>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="partner">Partner</label>
+                  </div>
+                  <select class="custom-select" id="partner"></select>
+                </div>
+                <div style="height: 0.75rem"></div>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="song">Song</label>
+                  </div>
+                  <select class="custom-select" id="song"></select>
+                </div>
+                <div style="height: 0.75rem"></div>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="gauge">Recollection Gauge</label>
+                  </div>
+                  <input type="number" class="form-control" id="gauge" min="0" max="100" placeholder="70" dir="rtl" />
+                </div>
+                <div style="height: 0.75rem"></div>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="score">Score</label>
+                  </div>
+                  <input type="number" class="form-control" id="score" placeholder="9500000" dir="rtl" />
+                </div>
+                <div style="height: 0.75rem"></div>
+                <div class="card border-dark">
+                  <div class="card-header">Note Count</div>
+                  <div class="card-body">
+                    <div class="container-fluid">
+                      <div class="row note-count">
+                       <div class="col-4 input-group-text">Pure</div>
+                        <div class="col-4 input-group-text">Far</div>
+                        <div class="col-4 input-group-text">Miss</div>
+                      </div>
+                      <div class="row">
+                        <div class="input-group note-count">
+                          <input type="number" class="form-control" id="pure" aria-label="pure" placeholder="900" dir="rtl" />
+                          <input type="number" class="form-control" id="far" aria-label="far" placeholder="10" dir="rtl" />
+                          <input type="number" class="form-control" id="miss" aria-label="miss" placeholder="5" dir="rtl" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div style="height: 0.75rem"></div>
+                <button type="button" class="btn btn-block btn-primary" id="attack">Attack!</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-12">
-          <h1 class="display-6">Damage Logs</h1>
+        <div class="col-md-12">
+          <div class="card border-dark mb-3" id="damage-log">
+            <h3 class="card-header">Damage Logs</h3>
+            <div class="card-body table-responsive">
+              <div class="table-scroll">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Partner</th>
+                    <th scope="col">Damage</th>
+                    <th scope="col">Attack Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>090102644</td>
+                    <td>Zero Hikari</td>
+                    <td>1440</td>
+                    <td>2020-06-20 12:00:00 UTC</td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -51,15 +173,35 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.1.0/dist/latest/bootstrap-autocomplete.min.js"></script>
+  <!-- Local Dependencies -->
+  <script src="js/ResizeSensor.js"></script>
+  <script src="js/ElementQueries.js"></script>
   <!-- Logic -->
   <script type="text/javascript">
     async function load() {
       const rawResponse = await fetch('https://arcaea.tnptop.com/raid/api/bosses/active')
       const { boss } = await rawResponse.json()
+      const { name, shield, health, maxHealth } = boss
+      const healthPercentage = Math.floor(health * 100 / maxHealth)
 
-      $('#boss-name').text(boss.name)
+      $('#boss-name').text(name)
+      $('#shield').text(shield)
+      $('#health').text(health)
+      $('#max-health').text(maxHealth)
+      $('#health-percentage').attr('aria-valuenow', healthPercentage)
+      $('#health-percentage').css({ width: `${healthPercentage}%` })
     }
-    $(document).ready(() => load())
+
+    $(document).ready(() => {
+      const attackInfoElem = $('#attack-info')
+      new ResizeSensor(attackInfoElem, () => {
+        $('#boss-info').css({
+          height: $(document).width() >= 576 ? attackInfoElem.height() : ''
+        })
+      })
+
+      load()
+    })
   </script>
 </body>
 </html>

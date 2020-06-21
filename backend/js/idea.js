@@ -20,7 +20,20 @@ let player_score = {
   song_side: 'conflict' // has to be obtained from database
 }
 
-let player_attempt = Object.assign({}, player_info, player_score)
+let player_attempt = {
+  "character": "zero_hikari",
+  "is_char_uncapped": false,
+  "is_char_uncapped_override": false,
+  "rating": 1225,
+  "difficulty": 2,
+  "clear_type": 1,
+  "health": 100,
+  "miss_count": 0,
+  "near_count": 0,
+  "score": 10000839,
+  "song_id": "vividtheory",
+  "song_side": "conflict"
+}
 
 let player_attack = {
   multiplier: 1, // [0.5, 0.7, 1.3, 1.5] for [greater weakness, weakness, resistance, greater resistance]

@@ -1,14 +1,68 @@
-  html, body {
-    height: 100%;
-  }
+html, body {
+  height: 100%;
+}
 
-  .center {
-    margin: auto;
-  }
+table {
+  table-layout: auto;
+}
 
-  .vertical-center {
-    min-height: 100%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+.center {
+  margin: auto;
+}
+
+.vertical-center {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.align-right {
+  align-items: end;
+  text-align: right;
+}
+
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table-scroll {
+  max-height: 250px;
+  overflow: auto;
+}
+
+.table-scroll thead th {
+  background: white;
+  position: sticky;
+  top: 0;
+}
+
+.note-count .form-control:first-child {
+  border-radius: 0 0 0 .25rem;
+}
+
+.note-count .form-control+.form-control {
+  border-radius: 0;
+}
+
+.note-count .form-control:last-child {
+  border-radius: 0 0 .25rem 0;
+}
+
+.note-count .input-group-text {
+  border-bottom: none;
+}
+
+.note-count .input-group-text:first-child {
+  border-radius: .25rem 0 0 0;
+  border-right: none;
+}
+
+.note-count .input-group-text+.input-group-text {
+  border-radius: 0;
+}
+
+.note-count .input-group-text:last-child {
+  border-radius: 0 .25rem 0 0;
+  border-left: none;
+}

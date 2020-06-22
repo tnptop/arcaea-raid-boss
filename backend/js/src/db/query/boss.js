@@ -4,6 +4,7 @@ const db = require('../')
 
 const base_boss_params = {
   health: 10000,
+  maxHealth: 10000,
   shield: 9200000, // Grade A, a bare minimum shield value
   weakness: [], // A list of song_ids marked as this boss' weaknesses (*1.3)
   greater_weakness: [], // A list of song_ids marked as this boss' greater weaknesses (*1.5)

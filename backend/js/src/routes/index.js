@@ -2,10 +2,13 @@
 
 const router = require('express').Router()
 
+const apiKey = require('../middleware/apiKey')
 const attack = require('../middleware/attack')
 const boss = require('../middleware/boss')
 const partner = require('../middleware/partner')
 const song = require('../middleware/song')
+
+router.use(apiKey.checkApiKey)
 
 router.get('/bosses/active', boss.getActiveBoss)
 router.get('/bosses/:_id', boss.getBoss)

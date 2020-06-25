@@ -2,12 +2,9 @@
 
 const router = require('express').Router()
 
-const apiKey = require('../middleware/apiKey')
-const attack = require('../middleware/attack')
-const boss = require('../middleware/boss')
-const partner = require('../middleware/partner')
-const song = require('../middleware/song')
+const { apiKey, attack, boss, log, partner, song } = require('../middleware')
 
+// force every endpoints to check API key
 router.use(apiKey.checkApiKey)
 
 router.get('/bosses/active', boss.getActiveBoss)
@@ -31,5 +28,7 @@ router.post(
   attack.applyChanges,
   attack.endAttack
 )
+
+router.post('/testSocket', log.testSocket)
 
 module.exports = router

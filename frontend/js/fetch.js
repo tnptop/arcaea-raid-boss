@@ -9,14 +9,14 @@ async function getActiveBossInfo () {
     }
   }
   const rawResponse = await fetch(`${BASE_URL}/bosses/active`, options)
-  const { boss } = await rawResponse.json()
+  const response = await rawResponse.json()
 
-  if (boss.err) throw boss.err
+  if (response.err) throw response.err
   else return Object.assign(
     {},
-    boss,
+    response.boss,
     {
-      percentHealth: Math.floor(boss.health * 100 / boss.maxHealth)
+      percentHealth: Math.floor(response.boss.health * 100 / response.boss.maxHealth)
     }
   )
 }
@@ -31,8 +31,8 @@ async function attack (attackParams) {
     body: JSON.stringify(attackParams)
   }
   const rawResponse = await fetch(`${BASE_URL}/attack`, options)
-  const attack = rawResponse.json()
+  const response = rawResponse.json()
 
-  if (attack.err) throw attack.err
-  else return attack
+  if (response.err) throw response.err
+  else return response.attack
 }

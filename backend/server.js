@@ -6,12 +6,15 @@ const compression = require('compression')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const helmet = require('helmet')
+const http = require('http')
 const morgan = require('morgan')
 
-const routes = require('./src/routes')
-const { errorHandler } = require('./src/utils/errorHandler')
-
+const sio = require('./src/utils/socket')
 const app = express()
+const server = http.createServer(app)
+sio.init(server)
+
+// apply app-wide middleware
 app.use(cors())
 app.use(bodyParser.json({ limit: '10mb' }))
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }))
@@ -20,7 +23,11 @@ app.use(cookieParser())
 app.use(helmet())
 app.use(morgan('dev'))
 
-app.use(routes)
+// apply defined router
+const router = require('./src/routes')
+const { errorHandler } = require('./src/utils/errorHandler')
+
+app.use(router)
 app.use(errorHandler)
 
-app.listen(54321, () => console.log('RAID BOSS UP @ 54321'))
+server.listen(process.env.PORT || 1431, () => console.log('RAID BOSS UP @ 1431'))

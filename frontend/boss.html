@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8" name="viewport" content="width=device-width,user-scalable=0">
-  <title>Arcaea Raid</title>
+  <title>Arcaea Raid Boss</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -144,6 +144,8 @@
                     <th scope="col">#</th>
                     <th scope="col">User</th>
                     <th scope="col">Partner</th>
+                    <th scope="col">Song</th>
+                    <th scope="col">Score</th>
                     <th scope="col">Damage</th>
                     <th scope="col">Attack Time</th>
                   </tr>
@@ -153,6 +155,8 @@
                     <th scope="row">1</th>
                     <td>090102644</td>
                     <td>Zero Hikari</td>
+                    <td>Alexandrite</td>
+                    <td>10000795</td>
                     <td>1440</td>
                     <td>2020-06-20 12:00:00 UTC</td>
                   </tr>
@@ -173,14 +177,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.1.0/dist/latest/bootstrap-autocomplete.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
   <!-- Local Dependencies -->
   <script src="js/ResizeSensor.js"></script>
   <script src="js/ElementQueries.js"></script>
   <!-- Logic -->
+  <script src="js/fetch.js"></script>
   <script type="text/javascript">
     async function load() {
-      const rawResponse = await fetch('https://arcaea.tnptop.com/raid/api/bosses/active')
-      const { boss } = await rawResponse.json()
+      const boss = await getActiveBossInfo()
       const { name, shield, health, maxHealth } = boss
       const healthPercentage = Math.floor(health * 100 / maxHealth)
 
@@ -199,7 +204,10 @@
           height: $(document).width() >= 576 ? attackInfoElem.height() : ''
         })
       })
-
+      const socket = io.connect('http://localhost:1431')
+      socket.on('log', (data) => {
+        console.log('socket', data)
+      })
       load()
     })
   </script>
